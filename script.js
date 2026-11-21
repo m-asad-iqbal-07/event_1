@@ -1,15 +1,16 @@
 /**
- * Engagement Invitation - Misbah Uddin & Mehwish Saleem
- * Date: Sunday, 22 November 2026 | Location: Utmanzai
- * Warm Welcome by Misbah's Family
+ * Walima Reception Invitation
+ * Dr. Muhammad Abubakar Farooq Khan & Dr. Hira Niazi
+ * Date: Saturday, 12 December 2026 | 12:30 PM
+ * Venue: Green Lagoon Hotel & Restaurant, Chashma, Kundian
  */
 
 // ----------------------------------------------------
-// 1. CONFIGURATION & STATE
+// 1. CONFIGURATION & TARGET DATE
 // ----------------------------------------------------
-// Target Date: 22 November 2026 at 11:00 AM
-// (Month is 0-indexed in JS Date: 10 = November)
-const engagementDate = new Date(2026, 10, 22, 11, 0, 0);
+// Target Date: 12 December 2026 at 12:30 PM
+// (Month is 0-indexed in JS Date: 11 = December)
+const walimaDate = new Date(2026, 11, 12, 12, 30, 0);
 
 // ----------------------------------------------------
 // 2. WAX SEAL & ENVELOPE OPENING ANIMATION
@@ -29,7 +30,7 @@ function openInvitation() {
   wrapper.classList.add('opening');
   if (instruction) instruction.style.opacity = '0';
 
-  // Spawn opening sparkle burst
+  // Spawn opening gold sparkles & emerald petals
   createSparkleBurst();
 
   setTimeout(() => {
@@ -37,10 +38,10 @@ function openInvitation() {
     screen.classList.add('opened');
     main.classList.remove('hidden');
 
-    // Scroll smoothly to top of main card
+    // Scroll smoothly to top of card
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Launch floating petals
+    // Launch floating petals & gold dust canvas
     initPetalsCanvas();
   }, 1100);
 }
@@ -49,11 +50,11 @@ function createSparkleBurst() {
   const seal = document.getElementById('waxSeal');
   if (!seal) return;
   const rect = seal.getBoundingClientRect();
-  const burstCount = 22;
+  const burstCount = 24;
 
   for (let i = 0; i < burstCount; i++) {
     const sparkle = document.createElement('div');
-    sparkle.innerText = Math.random() > 0.5 ? '✨' : '🌸';
+    sparkle.innerText = Math.random() > 0.5 ? '✨' : (Math.random() > 0.5 ? '🌿' : '🤍');
     sparkle.style.position = 'fixed';
     sparkle.style.left = `${rect.left + rect.width / 2}px`;
     sparkle.style.top = `${rect.top + rect.height / 2}px`;
@@ -64,7 +65,7 @@ function createSparkleBurst() {
     document.body.appendChild(sparkle);
 
     const angle = (Math.PI * 2 * i) / burstCount;
-    const distance = 80 + Math.random() * 130;
+    const distance = 80 + Math.random() * 140;
     const targetX = Math.cos(angle) * distance;
     const targetY = Math.sin(angle) * distance;
 
@@ -78,11 +79,11 @@ function createSparkleBurst() {
 }
 
 // ----------------------------------------------------
-// 3. LIVE COUNTDOWN TIMER (Target: 21 Nov 2026)
+// 3. LIVE COUNTDOWN TIMER (Target: 12 Dec 2026, 12:30 PM)
 // ----------------------------------------------------
 function updateCountdown() {
   const now = new Date().getTime();
-  const distance = engagementDate.getTime() - now;
+  const distance = walimaDate.getTime() - now;
 
   const daysEl = document.getElementById('cdDays');
   const hoursEl = document.getElementById('cdHours');
@@ -116,21 +117,25 @@ updateCountdown();
 // ----------------------------------------------------
 function addToCalendar(e) {
   e.preventDefault();
-  const title = encodeURIComponent("Engagement Ceremony: Misbah Uddin & Mehwish Saleem");
+  const title = encodeURIComponent("Walima Reception: Dr. Muhammad Abubakar Farooq Khan & Dr. Hira Niazi");
   const details = encodeURIComponent(
-    "A warm welcome by Misbah's Family.\n\n" +
-    "You are cordially invited to celebrate the blessed Engagement Ceremony of Misbah Uddin & Mehwish Saleem.\n\n" +
-    "Date: Sunday, 22 November 2026\n" +
-    "Schedule of Events:\n" +
-    "• 11:00 AM: Guest Arrival\n" +
-    "• 02:00 PM – 03:00 PM: Royal Lunch\n" +
-    "• 04:00 PM: Ring Ceremony\n\n" +
-    "Venue: Utmanzai, Charsadda, Khyber Pakhtunkhwa"
+    "With immense joy, you are cordially invited to celebrate the Walima Reception of:\n" +
+    "Dr. Muhammad Abubakar Farooq Khan & Dr. Hira Niazi\n\n" +
+    "Date: Saturday, 12 December 2026\n" +
+    "Schedule:\n" +
+    "• 12:30 PM: Arrival of Guests\n" +
+    "• 01:00 PM – 03:00 PM: Royal Lunch & Walima Feast\n\n" +
+    "Venue: Green Lagoon Hotel & Restaurant, Chashma Barrage, Kundian, Mianwali\n\n" +
+    "Warmly Welcomed By:\n" +
+    "• Mr. Dr. Muhammad Farooq Khan\n" +
+    "• Mr. Dr. Muhammad Talha Farooq Khan\n" +
+    "• Mr. Dr. Muhammad Umer Farooq Khan\n\n" +
+    "Contact: 0333 6835177 | 0333 6825188 | 0336 3700003"
   );
-  const location = encodeURIComponent("Utmanzai, Charsadda, Khyber Pakhtunkhwa");
+  const location = encodeURIComponent("Green Lagoon Hotel & Restaurant, Chashma, Kundian, Mianwali");
 
-  // Sunday, 22 November 2026 11:00 AM to 5:00 PM (PKT is UTC+5 -> 06:00 to 12:00 UTC)
-  const dates = "20261122T060000Z/20261122T120000Z";
+  // Saturday, 12 December 2026: 12:30 PM to 4:00 PM PKT (UTC+5 -> 07:30 UTC to 11:00 UTC)
+  const dates = "20261212T073000Z/20261212T110000Z";
 
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;
   window.open(googleCalUrl, '_blank');
@@ -155,17 +160,22 @@ function copyInviteLink() {
 
 function shareOnWhatsApp() {
   const text = encodeURIComponent(
-    `💍 *Engagement Invitation* 💍\n\n` +
-    `A warm welcome by *Misbah's Family*.\n\n` +
-    `You are cordially invited to celebrate the blessed Engagement Ceremony of:\n` +
-    `✨ *Misbah Uddin* & *Mehwish Saleem* ✨\n\n` +
-    `📅 *Date:* Sunday, 22 November 2026\n` +
-    `📍 *Location:* Utmanzai\n\n` +
-    `⏰ *Schedule of Events:*\n` +
-    `• 11:00 AM: Guest Arrival\n` +
-    `• 02:00 PM – 03:00 PM: Royal Lunch\n` +
-    `• 04:00 PM: Auspicious Ring Ceremony 💍\n\n` +
-    `Tap the link to open the invitation card:\n${window.location.href}`
+    `✨ *Dawat-e-Walima Invitation* ✨\n\n` +
+    `You are cordially invited to celebrate the blessed Walima Reception of:\n\n` +
+    `🤵 *Dr. Muhammad Abubakar Farooq Khan*\n` +
+    `   &\n` +
+    `👰 *Dr. Hira Niazi*\n\n` +
+    `📅 *Date:* Saturday, 12 December 2026\n` +
+    `⏰ *Schedule:*\n` +
+    `• 12:30 PM: Arrival of Guests\n` +
+    `• 01:00 PM – 03:00 PM: Royal Lunch & Walima Feast\n\n` +
+    `📍 *Venue:* Green Lagoon Hotel & Restaurant, Chashma Barrage, Kundian, Mianwali\n\n` +
+    `Warmly Welcomed By:\n` +
+    `• Mr. Dr. Muhammad Farooq Khan\n` +
+    `• Mr. Dr. Muhammad Talha Farooq Khan\n` +
+    `• Mr. Dr. Muhammad Umer Farooq Khan\n\n` +
+    `📞 Contact: 0333 6835177 | 0333 6825188 | 0336 3700003\n\n` +
+    `Tap the link to open the digital invitation card:\n${window.location.href}`
   );
   window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
 }
@@ -187,26 +197,7 @@ function showToast(message) {
 }
 
 // ----------------------------------------------------
-// 7. DEVICE VIEW MODE SWITCHER
-// ----------------------------------------------------
-function setDeviceMode(mode) {
-  const viewport = document.getElementById('appViewport');
-  const mobileBtn = document.getElementById('mobileModeBtn');
-  const fullBtn = document.getElementById('fullModeBtn');
-
-  if (mode === 'mobile') {
-    viewport.className = 'app-viewport mobile-frame';
-    mobileBtn.classList.add('active');
-    fullBtn.classList.remove('active');
-  } else {
-    viewport.className = 'app-viewport full-frame';
-    fullBtn.classList.add('active');
-    mobileBtn.classList.remove('active');
-  }
-}
-
-// ----------------------------------------------------
-// 8. FALLING ROSE PETALS CANVAS ANIMATION
+// 6. FALLING PETALS & GOLD SHIMMER CANVAS
 // ----------------------------------------------------
 function initPetalsCanvas() {
   const canvas = document.getElementById('petalsCanvas');
@@ -220,26 +211,32 @@ function initPetalsCanvas() {
   window.addEventListener('resize', resize);
   resize();
 
-  const petals = [];
-  const petalCount = 28;
+  const particles = [];
+  const count = 30;
 
-  for (let i = 0; i < petalCount; i++) {
-    petals.push({
+  for (let i = 0; i < count; i++) {
+    const isLeaf = Math.random() > 0.6;
+    const isGold = !isLeaf && Math.random() > 0.5;
+
+    particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height - canvas.height,
-      size: 10 + Math.random() * 14,
+      size: isGold ? (3 + Math.random() * 4) : (10 + Math.random() * 12),
       speedY: 1 + Math.random() * 2,
       speedX: (Math.random() - 0.5) * 1.2,
       rotation: Math.random() * 360,
       rotSpeed: (Math.random() - 0.5) * 2,
-      color: Math.random() > 0.4 ? 'rgba(180, 24, 48, 0.7)' : 'rgba(235, 120, 140, 0.65)'
+      isGold: isGold,
+      color: isLeaf 
+        ? 'rgba(18, 75, 42, 0.65)' 
+        : (isGold ? 'rgba(212, 175, 55, 0.75)' : 'rgba(255, 250, 240, 0.7)')
     });
   }
 
   function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let p of petals) {
+    for (let p of particles) {
       p.y += p.speedY;
       p.x += p.speedX;
       p.rotation += p.rotSpeed;
@@ -253,13 +250,24 @@ function initPetalsCanvas() {
       ctx.translate(p.x, p.y);
       ctx.rotate((p.rotation * Math.PI) / 180);
 
-      // Draw elegant petal shape
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.quadraticCurveTo(p.size / 2, -p.size / 2, p.size, 0);
-      ctx.quadraticCurveTo(p.size / 2, p.size / 2, 0, 0);
-      ctx.fillStyle = p.color;
-      ctx.fill();
+      if (p.isGold) {
+        // Gold shimmer dot
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = '#caa84e';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+      } else {
+        // Delicate leaf / white petal
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(p.size / 2, -p.size / 2, p.size, 0);
+        ctx.quadraticCurveTo(p.size / 2, p.size / 2, 0, 0);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      }
+
       ctx.restore();
     }
 
